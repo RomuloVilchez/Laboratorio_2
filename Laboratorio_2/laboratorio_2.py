@@ -7,6 +7,9 @@
 # Reyes Ortiz Perez Alejandra
 # Vilchez Zorrilla Romulo Alcides
 
+#Info: Agente simple  en entorno observable, sus movimientos se realizan de manera 
+# aleatoria con la condicion de que persiga al objetivo,los 5 objetivos "monedas" se generan de manera aleatoria en el entorno 
+# El agente percibe el entorno para poder desplazarse en el laberinto solo en los espacios asignados como permitidos
 
 import random
 from tkinter import X
