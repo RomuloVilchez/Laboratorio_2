@@ -37,8 +37,8 @@ def crear_mapa_laberinto(numero_filas, numero_columnas, numero_paredes, numero_e
         mapa_laberinto[fila_posicion_actual][columna_posicion_actual ] = '*'
         
         for e in range(1,6):
-            monedas_fila = random.randrange(numero_filas)
-            monedas_col = random.randrange(numero_columnas)
+            monedas_fila = random.randrange(1,numero_filas-1)
+            monedas_col = random.randrange(1,numero_columnas-1)
            
             mapa_laberinto[monedas_fila][monedas_col] = 'o'
              
@@ -91,69 +91,138 @@ for index, value in enumerate(laberinto):
                print("posicion en x: ", contador_x)
                print("posicion en y: ", contador_y)
 
-arriba=1
-abajo=1
-derecha=2
-izquierda=2
+#arriba=1
+#abajo=1
+#derecha=2
+#izquierda=2
+
+
 monedas=0
 nro_monedas=random.randint(1,3)
-
-while monedas<=nro_monedas:
+limite=0
+while monedas<=nro_monedas and limite<80:
 
     movimiento = random.randint(1,4)
  
-    if movimiento == 1 :
+    if movimiento == 1 and contador_x-1>0:
 
         print("arriba")
         if(laberinto[contador_x-1][contador_y] == ' '):
-           laberinto[contador_x][contador_y] = ' '
+           laberinto[contador_x][contador_y] = '-'
            laberinto[contador_x-1][contador_y] = '*'
            contador_x = contador_x-1
+           limite+=1
+           
         elif laberinto[contador_x-1][contador_y] == 'o':
-            laberinto[contador_x][contador_y] = ' '
+            laberinto[contador_x][contador_y] = '-'
             laberinto[contador_x-1][contador_y] = '*'
             contador_x = contador_x-1
             monedas+=1
 
-    elif movimiento == 2:
+
+    elif movimiento == 2 and contador_x+1<numero_filas:
         print("abajo")
         if(laberinto[contador_x+1][contador_y] == ' '):
-            laberinto[contador_x][contador_y] = ' '
+            laberinto[contador_x][contador_y] = '-'
             laberinto[contador_x+1][contador_y] = '*'
             contador_x = contador_x+1
+            limite+=1
         elif laberinto[contador_x+1][contador_y] == 'o':
-            laberinto[contador_x][contador_y] = ' '
+            laberinto[contador_x][contador_y] = '-'
             laberinto[contador_x+1][contador_y] = '*'
             contador_x = contador_x+1
             monedas+=1
 
-    elif movimiento == 3:
+    elif movimiento == 3 and contador_y-1>0:
         print("izquierda")
         if(laberinto[contador_x][contador_y-1] == ' '):
-            laberinto[contador_x][contador_y] = ' '
+            laberinto[contador_x][contador_y] = '-'
             laberinto[contador_x][contador_y-1] = '*'
             contador_y = contador_y-1
+            limite+=1
         elif (laberinto[contador_x][contador_y-1] == 'o'):
-            laberinto[contador_x][contador_y] = ' '
+            laberinto[contador_x][contador_y] = '-'
             laberinto[contador_x][contador_y-1] = '*'
             contador_y = contador_y-1
             monedas+=1
 
-    else :
+    
+    elif movimiento == 4 and contador_y+1< numero_columnas-1:
         print("derecha")
         if(laberinto[contador_x][contador_y+1] == ' '):
-            laberinto[contador_x][contador_y] = ' '
+            laberinto[contador_x][contador_y] = '-'
             laberinto[contador_x][contador_y+1] = '*'
             contador_y = contador_y+1
+            limite+=1
         elif (laberinto[contador_x][contador_y+1] == 'o'):
-            laberinto[contador_x][contador_y] = ' '
+            laberinto[contador_x][contador_y] = '-'
             laberinto[contador_x][contador_y+1] = '*'
             contador_y = contador_y+1 
             monedas+=1 
-  
+    else:
+        movimiento = random.randint(1,4)
+
+        if movimiento == 1 and contador_x-1>0:
+
+            print("arriba")
+            if(laberinto[contador_x-1][contador_y] == '-'):
+                laberinto[contador_x][contador_y] = ' '
+                laberinto[contador_x-1][contador_y] = '*'
+                contador_x = contador_x-1
+                limite+=1
+            
+            elif laberinto[contador_x-1][contador_y] == 'o':
+                laberinto[contador_x][contador_y] = ' '
+                laberinto[contador_x-1][contador_y] = '*'
+                contador_x = contador_x-1
+                monedas+=1
 
 
+        elif movimiento == 2 and contador_x+1<numero_filas:
+            print("abajo")
+            if(laberinto[contador_x+1][contador_y] == '-'):
+                laberinto[contador_x][contador_y] = ' '
+                laberinto[contador_x+1][contador_y] = '*'
+                contador_x = contador_x+1
+                limite+=1
+            elif laberinto[contador_x+1][contador_y] == 'o':
+                laberinto[contador_x][contador_y] = ' '
+                laberinto[contador_x+1][contador_y] = '*'
+                contador_x = contador_x+1
+                monedas+=1
+
+        elif movimiento == 3 and contador_y-1>0:
+            print("izquierda")
+            if(laberinto[contador_x][contador_y-1] == '-'):
+                laberinto[contador_x][contador_y] = ' '
+                laberinto[contador_x][contador_y-1] = '*'
+                contador_y = contador_y-1
+                limite+=1
+            
+            elif (laberinto[contador_x][contador_y-1] == 'o'):
+                laberinto[contador_x][contador_y] = '-'
+                laberinto[contador_x][contador_y-1] = '*'
+                contador_y = contador_y-1
+                monedas+=1
+
+    
+        elif movimiento == 4 and contador_y+1< numero_columnas-1:
+            print("derecha")
+            if(laberinto[contador_x][contador_y+1] == '-'):
+                laberinto[contador_x][contador_y] = ' '
+                laberinto[contador_x][contador_y+1] = '*'
+                contador_y = contador_y+1
+                limite+=1
+            elif (laberinto[contador_x][contador_y+1] == 'o'):
+                laberinto[contador_x][contador_y] = ' '
+                laberinto[contador_x][contador_y+1] = '*'
+                contador_y = contador_y+1 
+                monedas+=1 
+
+
+        
     for fila_mapa_laberinto in laberinto:
        print(fila_mapa_laberinto) 
+print(limite) 
   
 
